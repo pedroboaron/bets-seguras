@@ -122,6 +122,7 @@ public class PlaywrightPageFetcher {
         }
     }
 
+
     private <T> T submit(Callable<T> task) {
         try {
             Future<T> future = playwrightThread.submit(task);
