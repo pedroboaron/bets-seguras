@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/src/main/java/com/betseguras/domain\")",
+      "Bash(mkdir -p \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/src/main/java/com/betseguras/config\")",
+      "Bash(mkdir -p \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/src/main/java/com/betseguras/integration/mock\")",
+      "Bash(mkdir -p \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/src/main/java/com/betseguras/service\")",
+      "Bash(mkdir -p \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/src/main/java/com/betseguras/controller\")",
+      "Bash(mvn compile:*)",
+      "Bash(java -version)",
+      "Bash(javac -version)",
+      "Bash(mvn test:*)",
+      "Bash(timeout 15 mvn spring-boot:run)",
+      "Bash(mvn package:*)",
+      "Bash(ls:*)",
+      "Bash(javap -verbose C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/target/classes/com/betseguras/BetsSeguraApplication.class)",
+      "Bash(xxd target/classes/com/betseguras/BetsSeguraApplication.class)",
+      "Bash(mvn clean:*)",
+      "Bash(taskkill /F /IM java.exe)",
+      "Bash(kill 1402)",
+      "Bash(xargs kill:*)",
+      "WebFetch(domain:www.oddsagora.com.br)",
+      "WebSearch",
+      "Bash(grep -o \"bookie-logo[^>]*>.\\\\{0,200\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"bookie-logo.\\\\{0,500\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"data-testid=\"\"game-row\"\".\\\\{0,800\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"data-testid=\"\"event-participants\"\".\\\\{0,400\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"Estrelabet.\\\\{0,600\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"data-testid=\"\"[012]\"\".\\\\{0,300\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"odds_class.\\\\{0,100\\\\}\" \"C:/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/Brasileirão Betano Odds para Apostas, Futebol Brasil.html\")",
+      "Bash(grep -o \"eventRow.\\\\{0,2000\\\\}\")",
+      "Bash(grep -o \"game-row.\\\\{0,3000\\\\}\")",
+      "Bash(grep -o \"add-to-coupon.\\\\{0,1000\\\\}\")",
+      "Bash(mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args=\"install chromium\")",
+      "Bash(taskkill //F //IM java.exe)",
+      "Read(//c/Users/pedro/Documents/Dev/bets-seguras/bets-seguras/$TEMP/**)",
+      "Bash(find /tmp -name oddsagora*)",
+      "Read(//c/Users/pedro/AppData/Local/Temp/**)",
+      "Bash(node:*)",
+      "Bash(./mvnw compile:*)"
+    ]
+  }
+}

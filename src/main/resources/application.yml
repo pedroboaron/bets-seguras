@@ -1,0 +1,95 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bets-seguras
+  cache:
+    type: caffeine
+
+arbitrage:
+  max-investment: 1000.0        # teto global — usado quando saldo por casa não está configurado
+  min-profit-percentage: 0.5
+  # Legado — mantido por compatibilidade (não usado pelos novos agendamentos)
+  odds-refresh-interval-seconds: ${REFRESH_INTERVAL_SECONDS:300}
+  # Jogos de HOJE: intervalo curto (padrão 2 min)
+  today-refresh-seconds: ${TODAY_REFRESH_SECONDS:120}
+  # Jogos FUTUROS: intervalo longo (padrão 1 hora)
+  future-refresh-seconds: ${FUTURE_REFRESH_SECONDS:3600}
+  # Saldo disponível por casa de apostas (opcional).
+  # Quando configurado, o investimento máximo é calculado automaticamente
+  # respeitando o limite de cada conta: investment ≤ balance_k × odd_k × sum
+  # Casas sem saldo configurado ficam sujeitas ao max-investment global.
+  # Exemplo:
+  #balances:
+  #  Bet365: 500.0
+  #  KTO: 800.0
+  #  Pinnacle: 300.0
+
+# ─── The Odds API ───────────────────────────────────────────────────────────
+# Coloque sua chave abaixo e mude enabled para true
+the-odds-api:
+  enabled: false
+  api-key: ${ODDS_API_KEY:}
+  base-url: https://api.the-odds-api.com
+  regions: eu,us,uk      # quanto mais regiões, mais casas e melhor chance de arbitragem
+  sports:
+    # Brasil
+    - soccer_brazil_campeonato      # Brasileirão Série A
+    - soccer_brazil_serie_b         # Brasileirão Série B
+    # Europa — maior cobertura de casas, mais chance de arbitragem
+    - soccer_epl                    # Premier League (Inglaterra)
+    - soccer_spain_la_liga          # La Liga (Espanha)
+    - soccer_germany_bundesliga     # Bundesliga (Alemanha)
+    - soccer_italy_serie_a          # Serie A (Itália)
+    - soccer_france_ligue_one       # Ligue 1 (França)
+    - soccer_netherlands_eredivisie # Eredivisie (Holanda)
+    - soccer_portugal_primeira_liga # Primeira Liga (Portugal)
+    - soccer_turkey_super_league    # Süper Lig (Turquia)
+    # América Latina
+    - soccer_argentina_primera_division  # Primera División (Argentina)
+    - soccer_mexico_ligamx               # Liga MX (México)
+
+# ─── OddsAgora (casas brasileiras — scraping via Playwright) ────────────────
+# Na primeira execução com enabled: true, o Playwright baixa o Chromium (~150 MB).
+# Para pré-instalar: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install chromium"
+oddsagora:
+  enabled: true
+  base-url: https://www.oddsagora.com.br
+  page-timeout-ms: 15000
+  match-parallelism: 3      # threads simultâneas para scraping das páginas h2h
+  competitions:
+    - brasileirao-betano           # Brasileirão Série A
+    - brasileirao-serie-b-superbet # Brasileirão Série B
+    - copa-betano-do-brasil        # Copa do Brasil
+    # - serie-c                    # Série C (descomente se quiser)
+
+# ─── Mock providers (desligar quando usar API real) ─────────────────────────
+mock:
+  odds:
+    enabled: false
+
+# ─── Notificações Telegram ──────────────────────────────────────────────────
+# 1. Crie um bot: fale com @BotFather no Telegram → /newbot → copie o token
+# 2. Mande uma msg pro bot e acesse:
+#    https://api.telegram.org/bot<TOKEN>/getUpdates  → copie o "id" dentro de "chat"
+notification:
+  telegram:
+    enabled: true
+    bot-token: ${TELEGRAM_BOT_TOKEN:}
+    chat-ids:
+      - "1290105127"
+      # - "OUTRO_CHAT_ID"   # adicione mais destinatários se quiser
+    only-when-found: true   # false = notifica mesmo sem oportunidades
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs
+
+logging:
+  level:
+    com.betseguras: DEBUG
+    root: INFO
