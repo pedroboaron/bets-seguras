@@ -5,14 +5,13 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
-    env_file:
-      - .env
     environment:
-      # Intervalos de refresh (segundos)
-      - REFRESH_INTERVAL_SECONDS=300
-      - TODAY_REFRESH_SECONDS=120
-      - FUTURE_REFRESH_SECONDS=3600
-    # Limita recursos para não sobrecarregar o TrueNAS
+      ODDS_API_KEY: c1b3868c34b7d2c347cf985a50afc55c
+      TELEGRAM_BOT_TOKEN: "8730870576:AAFuT5cIYiahdagY0lRLGvpShfpqqA5z4_U"
+      TELEGRAM_CHAT_ID: "1290105127"
+      REFRESH_INTERVAL_SECONDS: 300
+      TODAY_REFRESH_SECONDS: 120
+      FUTURE_REFRESH_SECONDS: 3600
     deploy:
       resources:
         limits:
